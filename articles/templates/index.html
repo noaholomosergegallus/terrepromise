@@ -1,0 +1,53 @@
+  {% extends 'base.html' %}
+  {% block content %}
+        <!-- Start your project here-->  
+      <h1 class="text-center mt-3">hello le journal commence </h1>
+      <div class="container mb-4">
+        <div class="row">
+          {%for article in liste_articles%}
+            <!-- Card -->
+            <div class="col-12 col-md-6 col-lg-3 col-xl-3 ml-2 mt-3">
+
+              <div class="card ">
+
+                <!-- Card image -->
+                {% if article.image == "http://default" %}
+                   <a href="{%url 'detail' article.id %}"> 
+                       <img class="card-img-top" src="https://via.placeholder.com/400x300" alt="Card image cap" height="200px">
+                
+                    </a>
+                {% else %}
+                    <a href="{%url 'detail' article.id %}"> 
+                        <img class="card-img-top" src="{{article.image.url}}" alt="Card image cap" height="200px">
+                    </a>
+                {%endif %}
+
+              
+      
+                <!-- Card content -->
+                <div class="card-body" style="height:240px ;">
+      
+                  <!-- Title -->
+                  <h4 class="card-title"><a href="{%url 'detail' article.id %}">{{article.title}}</a></h4>
+                  <!-- Text -->
+                  <p class="card-text">{{article.content|truncatechars:20}}</p>
+                  <p class="card-text">edited since {{article.created_at|timesince}}</p>
+                  <!-- Button -->
+                  <a href="{%url 'detail' article.id %}" class="btn btn-primary">Lire la suite</a>
+      
+                </div>
+      
+              </div>
+              <!-- Card -->
+
+            </div>
+            
+            {%endfor%}
+        </div>
+  {% endblock  %}
+  
+    
+  
+
+
+
