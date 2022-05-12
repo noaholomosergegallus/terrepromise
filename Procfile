@@ -1,1 +1,1 @@
-web: gunicorn terrepromise.wsgi:applicationg --log-file -
+web: gunicorn terrepromise.wsgi:application --log-file -
